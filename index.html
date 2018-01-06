@@ -15,27 +15,82 @@
 <body>
     <div id="app">
 
+        <div class="page-container">
+            <md-app md-waterfall md-mode="overlap">
+                <md-app-toolbar class="md-primary md-large">
+                    <div class="md-toolbar-row">
+                        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+                            <md-icon>menu</md-icon>
+                        </md-button>
 
+                        <span class="md-title">Amethist Menu Generator </span>
+                    </div>
+                </md-app-toolbar>
 
-        <md-card>
-            <md-card-media-cover>
-                <md-card-media md-ratio="1:1">
-                    <img src="./amethist_menu_1.png" alt="Skyscraper">
-                </md-card-media>
+                <md-app-drawer :md-active.sync="menuVisible">
+                    <md-toolbar class="md-transparent" md-elevation="0">
+                        Navigation
+                    </md-toolbar>
 
-                <md-card-area>
-                    <md-card-header>
-                        <span class="md-title">Without text background</span>
-                        <span class="md-subhead">I bet you can't read this</span>
-                    </md-card-header>
+                    <md-list>
+                        <md-list-item>
+                            <md-icon>move_to_inbox</md-icon>
+                            <span class="md-list-item-text">Inbox</span>
+                        </md-list-item>
 
-                    <md-card-actions>
-                        <md-button>Neither this</md-button>
-                        <md-button>Or this</md-button>
-                    </md-card-actions>
-                </md-card-area>
-            </md-card-media-cover>
-        </md-card>
+                        <md-list-item>
+                            <md-icon>send</md-icon>
+                            <span class="md-list-item-text">Sent Mail</span>
+                        </md-list-item>
+
+                        <md-list-item>
+                            <md-icon>delete</md-icon>
+                            <span class="md-list-item-text">Trash</span>
+                        </md-list-item>
+
+                        <md-list-item>
+                            <md-icon>error</md-icon>
+                            <span class="md-list-item-text">Spam</span>
+                        </md-list-item>
+                    </md-list>
+                </md-app-drawer>
+
+                <md-app-content>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam,
+                        similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo,
+                        neque.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam,
+                        similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo,
+                        neque.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam,
+                        similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo,
+                        neque.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam,
+                        similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo,
+                        neque.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam,
+                        similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo,
+                        neque.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam,
+                        similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo,
+                        neque.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam,
+                        similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo,
+                        neque.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam,
+                        similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo,
+                        neque.
+                    </p>
+                </md-app-content>
+            </md-app>
+        </div>
 
 
     </div>
@@ -45,10 +100,10 @@
 
         var app = new Vue({
             el: '#app',
-            data: {
-                message: 'Hello Amethist Lunch Menu: ' + new Date().toLocaleString(),
-                color: 'red',
-            }
+            name: 'Overlap',
+            data: () => ({
+                menuVisible: false
+            })
         })
     </script>
 </body>
