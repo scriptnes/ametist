@@ -114,9 +114,37 @@
                 </md-card-area>
 
                 <md-card-actions>
-                    <md-button class="md-primary">Преглед</md-button>
+                    <md-button class="md-primary md-raised" @click="showDialog = true">Преглед</md-button>
                 </md-card-actions>
             </md-card>
+        </div>
+
+        <div>
+            <md-dialog :md-active.sync="showDialog">
+                <md-dialog-title>Preferences</md-dialog-title>
+
+                <md-tabs md-dynamic-height>
+                    <md-tab md-label="General">
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi
+                            impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore
+                            ducimus ipsa aut.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi
+                            impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore
+                            ducimus ipsa aut.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi
+                            impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore
+                            ducimus ipsa aut.</p>
+                    </md-tab>
+
+                </md-tabs>
+
+                <md-dialog-actions>
+                    <md-button class="md-primary" @click="showDialog = false">Close</md-button>
+                    <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+                </md-dialog-actions>
+            </md-dialog>
+
+            
         </div>
     </div>
 
@@ -127,7 +155,7 @@
             el: '#app',
             name: 'Overlap',
             data: () => ({
-                menuVisible: false,
+                showDialog: false,
                 dateNow: new Date().toLocaleDateString(),
                 dayNow: new Date().getDay(),
                 selectedSalads: [],
@@ -183,7 +211,7 @@
 
             methods: {
                 currDay(cDay) {
-                    let c_day = ['Неделя','Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота'];
+                    let c_day = ['Неделя', 'Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота'];
                     return c_day[cDay];
                 },
                 sendMessage() {
