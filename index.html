@@ -14,155 +14,110 @@
 
 <body>
     <div id="app">
-
         <div class="page-container">
-            <md-app md-waterfall md-mode="overlap">
-                <md-app-toolbar class="md-primary md-large">
-                    <div class="md-toolbar-row">
-                        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-                            <md-icon>menu</md-icon>
-                        </md-button>
+            <md-card class="md-card-example">
+                <md-card-area md-inset>
+                    <md-card-media md-ratio="1:1">
+                        <img src="./demo.png" alt="Coffee House">
+                    </md-card-media>
+                    <md-card-header>
+                        <h2 class="md-title">Обедно Меню</h2>
+                        <div class="md-subhead">
+                            <md-icon>access_time</md-icon>
+                            <span>{{ currDay(dayNow) }} - {{ dateNow }}</span>
+                        </div>
+                    </md-card-header>
+                </md-card-area>
 
-                        <span class="md-title">Amethist Menu Generator </span>
-                    </div>
-                </md-app-toolbar>
+                <md-card-area md-inset>
+                    <md-card-content>
+                        <h3 class="md-subheading">Салата</h3>
+                        <div class="md-layout md-gutter md-alignment-center-center">
+                            <div class="md-layout-item md-size-10">
+                                <md-checkbox v-model="isActiveSalad"></md-checkbox>
+                            </div>
+                            <div class="md-layout-item md-size-90">
+                                <md-field>
+                                    <md-select v-model="selectedSalads" name="salad" id="salad" :multiple="true">
+                                        <md-option v-for="(salad, index) in salads" :key="index" :value="salad"> {{ salad }} </md-option>
+                                    </md-select>
+                                </md-field>
+                            </div>
+                        </div>
+                        <div class="md-layout-item">
+                            <strong>Избрани Салати:</strong> {{ selectedSalads }}
+                        </div>
+                    </md-card-content>
+                </md-card-area>
 
-                <md-app-drawer :md-active.sync="menuVisible">
-                    <md-toolbar class="md-transparent" md-elevation="0">
-                        Navigation
-                    </md-toolbar>
+                <md-card-area md-inset>
+                    <md-card-content>
+                        <h3 class="md-subheading">Предястие</h3>
+                        <div class="md-layout md-gutter md-alignment-center-center">
+                            <div class="md-layout-item md-size-10">
+                                <md-checkbox v-model="isActiveStarter"></md-checkbox>
+                            </div>
+                            <div class="md-layout-item md-size-90">
+                                <md-field>
+                                    <md-select v-model="selectedStarters" name="starters" id="starters" :multiple="true">
+                                        <md-option v-for="(starter, index) in starters" :key="index" :value="starter"> {{ starter }} </md-option>
+                                    </md-select>
+                                </md-field>
+                            </div>
+                        </div>
+                        <div class="md-layout-item">
+                            <strong>Избрани Предястие:</strong> {{ selectedStarters }}
+                        </div>
+                    </md-card-content>
+                </md-card-area>
 
-                    <md-list>
-                        <md-list-item>
-                            <md-icon>move_to_inbox</md-icon>
-                            <span class="md-list-item-text">Inbox</span>
-                        </md-list-item>
+                <md-card-area md-inset>
+                    <md-card-content>
+                        <h3 class="md-subheading">Основно</h3>
+                        <div class="md-layout md-gutter md-alignment-center-center">
+                            <div class="md-layout-item md-size-10">
+                                <md-checkbox v-model="isActiveMain"></md-checkbox>
+                            </div>
+                            <div class="md-layout-item md-size-90">
+                                <md-field>
+                                    <md-select v-model="selectedMainCourses" name="salad" id="salad" :multiple="true">
+                                        <md-option v-for="(mainCourse, index) in mainCourses" :key="index" :value="mainCourse"> {{ mainCourse }} </md-option>
+                                    </md-select>
+                                </md-field>
+                            </div>
+                        </div>
+                        <div class="md-layout-item">
+                            <strong>Избрани Основно:</strong> {{ selectedMainCourses }}
+                        </div>
+                    </md-card-content>
+                </md-card-area>
 
-                        <md-list-item>
-                            <md-icon>send</md-icon>
-                            <span class="md-list-item-text">Sent Mail</span>
-                        </md-list-item>
+                <md-card-area md-inset>
+                    <md-card-content>
+                        <h3 class="md-subheading">Десерт</h3>
+                        <div class="md-layout md-gutter md-alignment-center-center">
+                            <div class="md-layout-item md-size-10">
+                                <md-checkbox v-model="isActiveDessert"></md-checkbox>
+                            </div>
+                            <div class="md-layout-item md-size-90">
+                                <md-field>
+                                    <md-select v-model="selectedDesserts" name="dessert" id="dessert" :multiple="true">
+                                        <md-option v-for="(dessert, index) in desserts" :key="index" :value="dessert"> {{ dessert }} </md-option>
+                                    </md-select>
+                                </md-field>
+                            </div>
+                        </div>
+                        <div class="md-layout-item">
+                            <strong>Избрани Десерт:</strong> {{ selectedDesserts }}
+                        </div>
+                    </md-card-content>
+                </md-card-area>
 
-                        <md-list-item>
-                            <md-icon>delete</md-icon>
-                            <span class="md-list-item-text">Trash</span>
-                        </md-list-item>
-
-                        <md-list-item>
-                            <md-icon>error</md-icon>
-                            <span class="md-list-item-text">Spam</span>
-                        </md-list-item>
-                    </md-list>
-                </md-app-drawer>
-
-                <md-app-content>
-                    <md-card class="md-card-example">
-                        <md-card-area md-inset>
-                            <md-card-media md-ratio="1:1">
-                                <img src="./demo.png" alt="Coffee House">
-                            </md-card-media>
-                            <md-card-header>
-                                <h2 class="md-title">Обедно Меню</h2>
-                                <div class="md-subhead">
-                                    <md-icon>access_time</md-icon>
-                                    <span>{{ dateNow }}</span>
-                                </div>
-                            </md-card-header>
-                        </md-card-area>
-
-                        <md-card-area md-inset>
-                            <md-card-content>
-                                <h3 class="md-subheading">Салата</h3>
-                                <div class="md-layout md-gutter md-alignment-center-center">
-                                    <div class="md-layout-item md-size-10">
-                                        <md-checkbox v-model="isActive"></md-checkbox>
-                                    </div>
-                                    <div class="md-layout-item md-size-90">
-                                        <md-field>
-                                            <md-select v-model="selectedSalads" name="salad" id="salad" :multiple="true">
-                                                <md-option v-for="(salad, index) in salads" :key="index" :value="salad"> {{ salad }} </md-option>
-                                            </md-select>
-                                        </md-field>
-                                    </div>
-                                </div>
-                                <div class="md-layout-item">
-                                    <strong>Избрани Салати:</strong> {{ selectedSalads }}
-                                </div>
-                            </md-card-content>
-                        </md-card-area>
-
-                        <md-card-area md-inset>
-                            <md-card-content>
-                                <h3 class="md-subheading">Предястие</h3>
-                                <div class="md-layout md-gutter md-alignment-center-center">
-                                    <div class="md-layout-item md-size-10">
-                                        <md-checkbox v-model="isActive"></md-checkbox>
-                                    </div>
-                                    <div class="md-layout-item md-size-90">
-                                        <md-field>
-                                            <md-select v-model="selectedStarters" name="starters" id="starters" :multiple="true">
-                                                <md-option v-for="(starter, index) in starters" :key="index" :value="starter"> {{ starter }} </md-option>
-                                            </md-select>
-                                        </md-field>
-                                    </div>
-                                </div>
-                                <div class="md-layout-item">
-                                    <strong>Избрани Предястие:</strong> {{ selectedStarters }}
-                                </div>
-                            </md-card-content>
-                        </md-card-area>
-
-                        <md-card-area md-inset>
-                            <md-card-content>
-                                <h3 class="md-subheading">Основно</h3>
-                                <div class="md-layout md-gutter md-alignment-center-center">
-                                    <div class="md-layout-item md-size-10">
-                                        <md-checkbox v-model="isActive"></md-checkbox>
-                                    </div>
-                                    <div class="md-layout-item md-size-90">
-                                        <md-field>
-                                            <md-select v-model="selectedMainCourses" name="salad" id="salad" :multiple="true">
-                                                <md-option v-for="(mainCourse, index) in mainCourses" :key="index" :value="mainCourse"> {{ mainCourse }} </md-option>
-                                            </md-select>
-                                        </md-field>
-                                    </div>
-                                </div>
-                                <div class="md-layout-item">
-                                    <strong>Избрани Основно:</strong> {{ selectedMainCourses }}
-                                </div>
-                            </md-card-content>
-                        </md-card-area>
-
-                        <md-card-area md-inset>
-                            <md-card-content>
-                                <h3 class="md-subheading">Десерт</h3>
-                                <div class="md-layout md-gutter md-alignment-center-center">
-                                    <div class="md-layout-item md-size-10">
-                                        <md-checkbox v-model="isActive"></md-checkbox>
-                                    </div>
-                                    <div class="md-layout-item md-size-90">
-                                        <md-field>
-                                            <md-select v-model="selectedDesserts" name="dessert" id="dessert" :multiple="true">
-                                                <md-option v-for="(dessert, index) in desserts" :key="index" :value="dessert"> {{ dessert }} </md-option>
-                                            </md-select>
-                                        </md-field>
-                                    </div>
-                                </div>
-                                <div class="md-layout-item">
-                                    <strong>Избрани Десерт:</strong> {{ selectedDesserts }}
-                                </div>
-                            </md-card-content>
-                        </md-card-area>
-
-                        <md-card-actions>
-                            <md-button class="md-primary">Създай Меню</md-button>
-                        </md-card-actions>
-                    </md-card>
-                </md-app-content>
-            </md-app>
+                <md-card-actions>
+                    <md-button class="md-primary">Преглед</md-button>
+                </md-card-actions>
+            </md-card>
         </div>
-
-
     </div>
 
     <script>
@@ -174,6 +129,7 @@
             data: () => ({
                 menuVisible: false,
                 dateNow: new Date().toLocaleDateString(),
+                dayNow: new Date().getDay(),
                 selectedSalads: [],
                 selectedStarters: [],
                 selectedMainCourses: [],
@@ -219,10 +175,17 @@
                     'десерт-7',
                     'десерт-8',
                 ],
-                isActive: true,
+                isActiveSalad: true,
+                isActiveStarter: true,
+                isActiveMain: true,
+                isActiveDessert: true,
             }),
 
             methods: {
+                currDay(cDay) {
+                    let c_day = ['Неделя','Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота'];
+                    return c_day[cDay];
+                },
                 sendMessage() {
                     window.alert('Send a message...')
                 },
