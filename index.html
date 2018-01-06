@@ -58,37 +58,104 @@
                 <md-app-content>
                     <md-card class="md-card-example">
                         <md-card-area md-inset>
-                            <md-card-media md-ratio="16:9">
+                            <md-card-media md-ratio="1:1">
                                 <img src="./demo.png" alt="Coffee House">
                             </md-card-media>
-
                             <md-card-header>
-                                <h2 class="md-title">Coffee House</h2>
+                                <h2 class="md-title">Обедно Меню</h2>
                                 <div class="md-subhead">
-                                    <md-icon>location_on</md-icon>
-                                    <span>2 miles</span>
+                                    <md-icon>access_time</md-icon>
+                                    <span>{{ dateNow }}</span>
                                 </div>
                             </md-card-header>
+                        </md-card-area>
 
+                        <md-card-area md-inset>
                             <md-card-content>
-                                Illy Coffee served with a complimentary Leonidas Belgian Chocolate with all beverages.
+                                <h3 class="md-subheading">Салата</h3>
+                                <div class="md-layout md-gutter md-alignment-center-center">
+                                    <div class="md-layout-item md-size-10">
+                                        <md-checkbox v-model="isActive"></md-checkbox>
+                                    </div>
+                                    <div class="md-layout-item md-size-90">
+                                        <md-field>
+                                            <md-select v-model="selectedSalads" name="salad" id="salad" :multiple="true">
+                                                <md-option v-for="(salad, index) in salads" :key="index" :value="salad"> {{ salad }} </md-option>
+                                            </md-select>
+                                        </md-field>
+                                    </div>
+                                </div>
+                                <div class="md-layout-item">
+                                    <strong>Избрани Салати:</strong> {{ selectedSalads }}
+                                </div>
                             </md-card-content>
                         </md-card-area>
 
-                        <md-card-content>
-                            <h3 class="md-subheading">Today's availability</h3>
-                            <div class="card-reservation">
-                                <md-icon>access_time</md-icon>
-                                <div class="md-button-group">
-                                    <md-button>5:30PM</md-button>
-                                    <md-button>7:30PM</md-button>
-                                    <md-button>9:00PM</md-button>
+                        <md-card-area md-inset>
+                            <md-card-content>
+                                <h3 class="md-subheading">Предястие</h3>
+                                <div class="md-layout md-gutter md-alignment-center-center">
+                                    <div class="md-layout-item md-size-10">
+                                        <md-checkbox v-model="isActive"></md-checkbox>
+                                    </div>
+                                    <div class="md-layout-item md-size-90">
+                                        <md-field>
+                                            <md-select v-model="selectedStarters" name="starters" id="starters" :multiple="true">
+                                                <md-option v-for="(starter, index) in starters" :key="index" :value="starter"> {{ starter }} </md-option>
+                                            </md-select>
+                                        </md-field>
+                                    </div>
                                 </div>
-                            </div>
-                        </md-card-content>
+                                <div class="md-layout-item">
+                                    <strong>Избрани Предястие:</strong> {{ selectedStarters }}
+                                </div>
+                            </md-card-content>
+                        </md-card-area>
+
+                        <md-card-area md-inset>
+                            <md-card-content>
+                                <h3 class="md-subheading">Основно</h3>
+                                <div class="md-layout md-gutter md-alignment-center-center">
+                                    <div class="md-layout-item md-size-10">
+                                        <md-checkbox v-model="isActive"></md-checkbox>
+                                    </div>
+                                    <div class="md-layout-item md-size-90">
+                                        <md-field>
+                                            <md-select v-model="selectedMainCourses" name="salad" id="salad" :multiple="true">
+                                                <md-option v-for="(mainCourse, index) in mainCourses" :key="index" :value="mainCourse"> {{ mainCourse }} </md-option>
+                                            </md-select>
+                                        </md-field>
+                                    </div>
+                                </div>
+                                <div class="md-layout-item">
+                                    <strong>Избрани Основно:</strong> {{ selectedMainCourses }}
+                                </div>
+                            </md-card-content>
+                        </md-card-area>
+
+                        <md-card-area md-inset>
+                            <md-card-content>
+                                <h3 class="md-subheading">Десерт</h3>
+                                <div class="md-layout md-gutter md-alignment-center-center">
+                                    <div class="md-layout-item md-size-10">
+                                        <md-checkbox v-model="isActive"></md-checkbox>
+                                    </div>
+                                    <div class="md-layout-item md-size-90">
+                                        <md-field>
+                                            <md-select v-model="selectedDesserts" name="dessert" id="dessert" :multiple="true">
+                                                <md-option v-for="(dessert, index) in desserts" :key="index" :value="dessert"> {{ dessert }} </md-option>
+                                            </md-select>
+                                        </md-field>
+                                    </div>
+                                </div>
+                                <div class="md-layout-item">
+                                    <strong>Избрани Десерт:</strong> {{ selectedDesserts }}
+                                </div>
+                            </md-card-content>
+                        </md-card-area>
 
                         <md-card-actions>
-                            <md-button class="md-primary">Reserve</md-button>
+                            <md-button class="md-primary">Създай Меню</md-button>
                         </md-card-actions>
                     </md-card>
                 </md-app-content>
@@ -105,7 +172,54 @@
             el: '#app',
             name: 'Overlap',
             data: () => ({
-                menuVisible: false
+                menuVisible: false,
+                dateNow: new Date().toLocaleDateString(),
+                selectedSalads: [],
+                selectedStarters: [],
+                selectedMainCourses: [],
+                selectedDesserts: [],
+
+                salads: [
+                    'салата-1',
+                    'салата-2',
+                    'салата-3',
+                    'салата-4',
+                    'салата-5',
+                    'салата-6',
+                    'салата-7',
+                    'салата-8',
+                ],
+                starters: [
+                    'предястие-1',
+                    'предястие-2',
+                    'предястие-3',
+                    'предястие-4',
+                    'предястие-5',
+                    'предястие-6',
+                    'предястие-7',
+                    'предястие-8',
+                ],
+                mainCourses: [
+                    'основно-1',
+                    'основно-2',
+                    'основно-3',
+                    'основно-4',
+                    'основно-5',
+                    'основно-6',
+                    'основно-7',
+                    'основно-8',
+                ],
+                desserts: [
+                    'десерт-1',
+                    'десерт-2',
+                    'десерт-3',
+                    'десерт-4',
+                    'десерт-5',
+                    'десерт-6',
+                    'десерт-7',
+                    'десерт-8',
+                ],
+                isActive: true,
             }),
 
             methods: {
