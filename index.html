@@ -15,11 +15,15 @@
 <body>
     <div id="app">
         <div class="page-container">
-            <md-card class="md-card-example">
+            <md-card class="md-card-example" style="width:600px;">
+
+
+                <img src="./header.png" alt="">
+
+
+
+
                 <md-card-area md-inset>
-                    <md-card-media md-ratio="1:1">
-                        <img src="./demo.png" alt="Coffee House">
-                    </md-card-media>
                     <md-card-header>
                         <h2 class="md-title">Обедно Меню</h2>
                         <div class="md-subhead">
@@ -121,30 +125,18 @@
 
         <div>
             <md-dialog :md-active.sync="showDialog">
-                <md-dialog-title>Preferences</md-dialog-title>
+                <md-dialog-title>Преглед</md-dialog-title>
 
-                <md-tabs md-dynamic-height>
-                    <md-tab md-label="General">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi
-                            impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore
-                            ducimus ipsa aut.</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi
-                            impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore
-                            ducimus ipsa aut.</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi
-                            impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore
-                            ducimus ipsa aut.</p>
-                    </md-tab>
-
-                </md-tabs>
+                <md-dialog-content>
+                    <img src="./demo.png" alt="Coffee House">
+                </md-dialog-content>
 
                 <md-dialog-actions>
-                    <md-button class="md-primary" @click="showDialog = false">Close</md-button>
-                    <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+                    <md-button class="md-primary" @click="showDialog = false">Затвори</md-button>
+                    <md-button class="md-primary" @click="showDialog = false">Сподели</md-button>
                 </md-dialog-actions>
             </md-dialog>
 
-            
         </div>
     </div>
 
@@ -154,7 +146,9 @@
         var app = new Vue({
             el: '#app',
             name: 'Overlap',
+
             data: () => ({
+
                 showDialog: false,
                 dateNow: new Date().toLocaleDateString(),
                 dayNow: new Date().getDay(),
@@ -209,6 +203,8 @@
                 isActiveDessert: true,
             }),
 
+
+
             methods: {
                 currDay(cDay) {
                     let c_day = ['Неделя', 'Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота'];
@@ -219,6 +215,9 @@
                 },
                 doACall() {
                     window.alert('Calling someone...')
+                },
+                test() {
+                    this.exampleContent = "test";
                 }
             },
         })
